@@ -1,3 +1,4 @@
+import { EncodedMessage } from "../messages/types";
 import { RequestContext } from "../types";
 
 export type Issuer = {
@@ -40,12 +41,6 @@ export interface VerifiableCredentialRequest {
   revocable: boolean
 }
 
-export interface VerifiableCredentialIssueResponse {
-  jwe: any;
-  qrCode: string;
-  deepLink: string;
-}
-
 export type VaccineCredentialRequest = {
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
@@ -84,7 +79,7 @@ export type VaccineCredentialRequest = {
 }
 
 export interface VerifiableCredentialIssuerService {
-  (credential: VerifiableCredential, ctx: RequestContext): Promise<VerifiableCredentialIssueResponse>
+  (credential: VerifiableCredential, ctx: RequestContext): Promise<EncodedMessage>
 }
 
 export interface VerifiableCredentialRequestService {

@@ -9,7 +9,7 @@ export const createRequest: VerifiableCredentialRequestFactory = () => {
     subjectId: "did:key:z6MkfFKS7R76qRmGcjuDfQuCRxi9tJzTqvbCYfAPoF4kBy4a",
     type: [
       "VerifiableCredential",
-      "Vaccine Certificate"
+      "VaccineCertificate"
     ],
     claims: {
       givenName: "Elliot",
