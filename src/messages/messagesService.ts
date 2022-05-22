@@ -6,7 +6,7 @@ import { RequestContext, ShortenedItem } from "../types";
 import { EncodedMessage, MessageEncodeService, MessageSendService, MessageSignService } from "./types";
 
 
-export const shortenedUrls = new Map<string, ShortenedItem>();
+var shortenedUrls = new Map<string, ShortenedItem>();
 
 export const sendMessage: MessageSendService = async (subject: string, message: object, ctx: RequestContext) => {
   const { api } = ctx;
@@ -36,6 +36,10 @@ export const encodeMessage: MessageEncodeService = async (message: object, ctx: 
   };
 }
 
+export function getShortenedUrls() {
+  return shortenedUrls;
+}
+
 export const createQrCode = async (data: string | object, ctx: RequestContext): Promise<any> => {
   const { bundleId } = ctx;
 
@@ -56,10 +60,12 @@ function shortenUrl(data: string | object, ctx: RequestContext): string {
 
   if (typeof data === "object") {
     shortenedUrls.set(code, { url: `https://${tenant}`, payload: request });
+    console.log("Added item to shortened URLs:", shortenedUrls.get(code))
   } else {
     shortenedUrls.set(code, { url: `https://${tenant}?request=${request}`, payload: undefined });
+    console.log("Added item to shortened URLs:", shortenedUrls.get(code))
   }
-  return `${ngrokUrl}/resolve/${code}`;
+  return `${ngrokUrl}/messages/${code}`;
 }
 
 function base64UrlEncode(str: string): string {

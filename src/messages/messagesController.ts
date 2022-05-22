@@ -1,8 +1,7 @@
 import assert from "assert";
 import { NextFunction, Request, Response } from "express";
 
-import { shortenedUrls } from "../credentials/credentialIssuerService";
-import { sendMessage } from "./messagesService";
+import { getShortenedUrls, sendMessage } from "./messagesService";
 
 export async function create(req: Request, res: Response, next: NextFunction) {
   try {
@@ -20,6 +19,8 @@ export async function create(req: Request, res: Response, next: NextFunction) {
 
 export function get(req: Request, res: Response, next: NextFunction) {
   const { code } = req.params;
+  const shortenedUrls = getShortenedUrls();
+  console.log("Retrieved shortened URLs:", shortenedUrls);
   const found = shortenedUrls.get(code);
   if (found && found.payload) {
     console.log("Resolved shorten URL with JWE payload:", found);
