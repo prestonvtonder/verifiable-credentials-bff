@@ -1,9 +1,11 @@
 import assert from "assert";
-import { v4 as uuid } from "uuid";
 
 import { NextFunction, Request, Response } from "express";
 import { issuePresentation } from "./presentationsIssuerService";
+import { ParsedPresentationResult, PresentationRef } from "./types";
 
+
+const receivedPresentations = new Map<PresentationRef, ParsedPresentationResult>();
 
 export async function createPresentation(req: Request, res: Response, next: NextFunction) {
   try {
@@ -16,4 +18,21 @@ export async function createPresentation(req: Request, res: Response, next: Next
     console.error("Failed to create DIDAuth request", err, err?.response?.body);
     next(err);
   }
+}
+
+export async function didAuthCallback(req: Request, res: Response) {
+  console.log("Received DIDAuth Presentation", req.body);
+  const { challengeId, verified, holder } = req.body;
+  assert(challengeId, "Invalid DIDAuth response, expected challengeId");
+  if (!verified || !holder) {
+    console.error("DIDAuth request failed");
+  } else {
+    receivedPresentations.set(challengeId, { subjectDid: holder });
+  }
+  res.sendStatus(200);
+}
+
+export async function getPresentation(req: Request, res: Response) {
+  const { id } = req.params;
+  res.send({ data: receivedPresentations.get(id) });
 }

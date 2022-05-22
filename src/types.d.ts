@@ -1,10 +1,5 @@
 import { Got } from "got";
 
-export type PresentationRef = string;
-export type ParsedPresentationResult = {
-  subjectDid: string;
-};
-
 export type RequestContext = {
   tenant: string;
   bundleId: string;

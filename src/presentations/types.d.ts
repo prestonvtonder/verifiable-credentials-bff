@@ -24,6 +24,12 @@ export interface VerifiablePresentationMessageResponse {
   request: VerifiablePresentationMessage
 }
 
+export type PresentationRef = string;
+
+export type ParsedPresentationResult = {
+  subjectDid: string;
+};
+
 export interface VerifiablePresentationMessageRequestService {
   (presentationRequest: VerifiablePresentationMessageRequest, ctx: RequestContext): Promise<VerifiablePresentationMessageResponse>
 }
