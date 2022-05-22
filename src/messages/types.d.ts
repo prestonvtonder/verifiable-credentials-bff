@@ -8,6 +8,12 @@ export interface MessageDetails {
   location: string;
 }
 
+export interface EncodedMessage {
+  jwe: any;
+  qrCode: string;
+  deepLink: string;
+}
+
 export interface MessageSendResponse {
   code: string;
   message: string;
@@ -20,4 +26,12 @@ export interface MessageSendService {
 
 export interface MessageGetService {
   (subject: string, message: object, ctx: RequestContext): Promise<MessageSendResponse>
+}
+
+export interface MessageSignService {
+  (message: object, ctx: RequestContext): Promise<string>
+}
+
+export interface MessageEncodeService {
+  (message: object, ctx: RequestContext): Promise<EncodedMessage>
 }
