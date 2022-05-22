@@ -6,6 +6,7 @@ import ngrok from "ngrok";
 
 import { credentialRouter } from "./credentials/credentialRouter";
 import { messagesRouter } from "./messages/messagesRouter";
+import { presentationsRouter } from "./presentations/presentationsRouter";
 import { RequestContext } from "./types";
 
 // Launch the Express server
@@ -43,6 +44,7 @@ import { RequestContext } from "./types";
   });
 
   app.use("/credentials", credentialRouter);
+  app.use("/presentations", presentationsRouter);
   app.use("/messages", messagesRouter);
 
   app.listen(port, () => {
