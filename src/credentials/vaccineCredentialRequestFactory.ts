@@ -1,6 +1,6 @@
 import { VerifiableCredentialRequestFactory } from "./types";
 
-export const createRequest: VerifiableCredentialRequestFactory = () => {
+export const createVaccineRequest: VerifiableCredentialRequestFactory = () => {
   return {
     "@context": [
       "https://www.w3.org/2018/credentials/v1",
@@ -32,7 +32,7 @@ export const createRequest: VerifiableCredentialRequestFactory = () => {
     },
     issuer: {
       id: "did:key:z6Mkg56eqRqaW1wfiiiCcbwJgbLTLV99Z7pFdWrKkkBTPp88",
-      name: "South African Department of Health"    
+      name: "South African Department of Health"
     },
     persist: false,
     revocable: false,

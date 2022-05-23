@@ -1,7 +1,9 @@
 import { VerifiableCredentialRequestFactory } from "./types";
 
-import { createRequest } from "./vaccineCredentialRequestFactory";
+import { createVaccineRequest } from "./vaccineCredentialRequestFactory";
+import { createBoardingPassRequest } from "./boardingPassCredentialRequestFactory";
 
 export const credentialRequestFactories = new Map<string, VerifiableCredentialRequestFactory>([
-  ["VaccineCertificate", createRequest]
+  ["VaccineCertificate", createVaccineRequest],
+  ["BoardingPassCredential", createBoardingPassRequest]
 ]);
