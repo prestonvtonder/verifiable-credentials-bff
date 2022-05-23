@@ -13,7 +13,7 @@ export const issuePresentation = async (did: string, type: string, ctx: RequestC
   const didDocument = await getDidDocument(did, ctx);
   const didUrl = didDocument?.authentication[0];
   assert(didUrl, "Cannot resolve presentation request signing DIDUrl");
-  const callbackUrl = `${ngrokUrl}/presentations/callback`;
+  const callbackUrl = `${ngrokUrl}/api/presentations/callback`;
   const templateId = getTemplateId(type);
   const { request } = await createPresentationMessageRequest({ challenge, did, templateId, callbackUrl }, ctx);
   console.log("Created DIDAuth presentation request:", request);

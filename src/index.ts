@@ -43,9 +43,9 @@ import { RequestContext } from "./types";
     next();
   });
 
-  app.use("/credentials", credentialRouter);
-  app.use("/presentations", presentationsRouter);
-  app.use("/messages", messagesRouter);
+  app.use("/api/credentials", credentialRouter);
+  app.use("/api/presentations", presentationsRouter);
+  app.use("/api/messages", messagesRouter);
 
   app.listen(port, () => {
     console.log(`Sample App Started`);

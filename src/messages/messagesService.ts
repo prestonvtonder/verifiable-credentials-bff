@@ -11,9 +11,9 @@ var shortenedUrls = new Map<string, ShortenedItem>();
 export const sendMessage: MessageSendService = async (subject: string, message: object, ctx: RequestContext) => {
   const { api } = ctx;
 
-  const payload = { 
-    to: subject, 
-    message: message 
+  const payload = {
+    to: subject,
+    message: message
   };
 
   console.log("Sending message: ", payload);
@@ -65,9 +65,9 @@ function shortenUrl(data: string | object, ctx: RequestContext): string {
     shortenedUrls.set(code, { url: `https://${tenant}?request=${request}`, payload: undefined });
     console.log("Added item to shortened URLs:", shortenedUrls.get(code))
   }
-  return `${ngrokUrl}/messages/${code}`;
+  return `${ngrokUrl}/api/messages/${code}`;
 }
 
 function base64UrlEncode(str: string): string {
   return base64.encodeURLSafe(Buffer.from(str));
-} 
+}

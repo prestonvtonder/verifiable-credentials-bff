@@ -9,7 +9,8 @@ const receivedPresentations = new Map<PresentationRef, ParsedPresentationResult>
 
 export async function createPresentation(req: Request, res: Response, next: NextFunction) {
   try {
-    const { messagingDid, type } = req.body;
+    const messagingDid = req.query.did as string !== undefined ? req.query.did as string : "did:key:z6Mkg56eqRqaW1wfiiiCcbwJgbLTLV99Z7pFdWrKkkBTPp88";
+    const type = req.query.type as string;
     console.log("Preparing DIDAuth presentation request for", messagingDid);
     assert(messagingDid, "Presentation request messaging DID is required");
     const data = await issuePresentation(messagingDid, type, req.context);
@@ -35,4 +36,14 @@ export async function didAuthCallback(req: Request, res: Response) {
 export async function getPresentation(req: Request, res: Response) {
   const { id } = req.params;
   res.send({ data: receivedPresentations.get(id) });
+}
+
+export async function getStatus(req: Request, res: Response) {
+  console.log("Received presentations:", receivedPresentations.size);
+  if (receivedPresentations.size !== 0) {
+    res.sendStatus(200);
+    receivedPresentations.clear();
+  } else {
+    res.sendStatus(404);
+  }
 }
