@@ -20,6 +20,7 @@ export const createBoardingPassRequest: VerifiableCredentialRequestFactory = () 
       object: {
         "@type": "Flight",
         flightNumber: "BA431",
+        departureGate: " A-192 ",
         provider: {
           "@type": "Airline",
           name: "British Airways",
@@ -35,13 +36,13 @@ export const createBoardingPassRequest: VerifiableCredentialRequestFactory = () 
           name: "O. R. Tambo International Airport",
           iataCode: "JNB"
         },
-        departureTime: "2022-05-23T19:20:00-08:00",
+        departureTime: "2022-05-23T19:20:00+02:00",
         arrivalAirport: {
           "@type": "Airport",
           name: "London Heathrow Airport",
           iataCode: "LHR"
         },
-        arrivalTime: "2022-05-24T05:30:00-05:00"
+        arrivalTime: "2022-05-24T05:30:00+00:00"
       },
       instrument: {
         "@type": "WebApplication",
