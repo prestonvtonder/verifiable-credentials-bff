@@ -41,9 +41,9 @@ export async function getPresentation(req: Request, res: Response) {
 export async function getStatus(req: Request, res: Response) {
   console.log("Received presentations:", receivedPresentations.size);
   if (receivedPresentations.size !== 0) {
-    res.sendStatus(200);
+    res.send({ status: 'Success' });
     receivedPresentations.clear();
   } else {
-    res.sendStatus(404);
+    res.send({ status: 'Failure' });
   }
 }
