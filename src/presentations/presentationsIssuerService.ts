@@ -30,7 +30,7 @@ function getTemplateId(type: string): string {
       id = "f40ce1ea-6c19-4822-a1f4-f57a28220140";
       break;
     case "vaccine":
-      id = "";
+      id = "33026663-5521-4f8b-8149-2d2d04d6b236";
       break;
     default:
       id = "";
